@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
-from PIL import image
+from PIL import Image
 
 model = load_model("face_classifier.h5")
 st.title("real vs fake face classifier")
