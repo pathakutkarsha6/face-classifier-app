@@ -72,7 +72,7 @@ if uploaded_file is not None:
         st.image(img, caption="Submitted image", use_container_width=True)
 
     with st.spinner("Scanning pixel patterns..."):
-        img_resized = img.resize((224, 224))
+        img_resized = img.resize((128, 128))
         img_array = np.expand_dims(np.array(img_resized), axis=0)
         prediction = model.predict(img_array)[0][0]
 
