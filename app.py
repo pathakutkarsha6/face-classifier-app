@@ -58,10 +58,11 @@ model = load_model("face_classifier.h5")
 st.markdown('<div class="main-title">🔎 Face Authenticity Scanner</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">Upload a face photo to check whether it is a real photograph or AI-generated.</div>', unsafe_allow_html=True)
 
-uploaded_file = st.file_uploader("Choose an image", type=['jpg', 'jpeg', 'png'])
-st.info("This model works best on plain, front-facing, uncropped face photos. "
+st.info("ℹ️ This model works best on plain, front-facing, uncropped face photos. "
         "It may misclassify images with unusual formatting (black bars, filters) or from "
         "newer AI generators different from its training data.")
+
+uploaded_file = st.file_uploader("Choose an image", type=['jpg', 'jpeg', 'png'])
 
 if uploaded_file is not None:
     col1, col2 = st.columns([1, 1])
@@ -71,7 +72,7 @@ if uploaded_file is not None:
         st.image(img, caption="Submitted image", use_container_width=True)
 
     with st.spinner("Scanning pixel patterns..."):
-        img_resized = img.resize((128, 128))
+        img_resized = img.resize((224, 224))
         img_array = np.expand_dims(np.array(img_resized), axis=0)
         prediction = model.predict(img_array)[0][0]
 
@@ -97,7 +98,7 @@ if uploaded_file is not None:
     with st.expander("How this works"):
         st.write(
             "This scanner uses a Convolutional Neural Network (CNN) trained on 140,000 "
-            "real and AI-generated face images, reaching 94.58% accuracy on unseen test data. "
+            "real and AI-generated face images, with data augmentation for improved robustness. "
             "It looks for subtle pixel-level patterns — texture, blending artifacts, and lighting "
             "inconsistencies — that AI face generators tend to leave behind."
         )
