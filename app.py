@@ -59,6 +59,9 @@ st.markdown('<div class="main-title">🔎 Face Authenticity Scanner</div>', unsa
 st.markdown('<div class="subtitle">Upload a face photo to check whether it is a real photograph or AI-generated.</div>', unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader("Choose an image", type=['jpg', 'jpeg', 'png'])
+st.info("This model works best on plain, front-facing, uncropped face photos. "
+        "It may misclassify images with unusual formatting (black bars, filters) or from "
+        "newer AI generators different from its 2020-era training data.")
 
 if uploaded_file is not None:
     col1, col2 = st.columns([1, 1])
