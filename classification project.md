@@ -26,7 +26,7 @@ This project trains a Convolutional Neural Network (CNN) from scratch to classif
 
 ## Results
 
-- **Test Accuracy:** ~88-94% depending on configuration
+- **Test Accuracy:** ~-94% depending on configuration
 - Model performs best on plain, front-facing, uncropped face photos similar to its training data
 
 ## Limitations
